@@ -16,3 +16,4 @@ class Config(BaseSettings):
     admins: list = []
 
 cfg = Config()
+
