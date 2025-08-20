@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from pydantic_settings import BaseSettings
 
 
@@ -9,5 +11,8 @@ class Config(BaseSettings):
     ## Main
     bot_token: str = ''
 
+    sql_lite_db_path: Path = Path("../data/database.db")
+
+    admins: list = []
 
 cfg = Config()

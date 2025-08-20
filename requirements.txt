@@ -1,2 +1,4 @@
-aiogram==3.21.0
+aiogram
 pydantic-settings
+tortoise
+tortoise-orm
