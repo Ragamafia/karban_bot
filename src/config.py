@@ -10,10 +10,12 @@ class Config(BaseSettings):
 
     ## Main
     bot_token: str = ''
+    username: str = ''
+    password: str = ''
 
     sql_lite_db_path: Path = Path("../data/database.db")
 
-    admins: list = []
+    admins: list = [1377785914]
 
 cfg = Config()
 

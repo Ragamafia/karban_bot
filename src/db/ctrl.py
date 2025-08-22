@@ -4,7 +4,6 @@ from tortoise.models import Model
 
 from src.db.base import BaseDB
 from src.db.table import UserModel
-from logger import logger
 
 
 class DataBaseController(BaseDB):
@@ -15,7 +14,6 @@ class DataBaseController(BaseDB):
         self.user = UserModel
 
     @BaseDB.db_connect
-
     async def get_user(self, user_id):
         return await self.user.filter(user_id=user_id).first()
 

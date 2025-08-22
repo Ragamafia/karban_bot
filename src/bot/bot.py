@@ -5,10 +5,9 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.types import Message, CallbackQuery, BotCommand
 
 from src.bot.handlers import register_main_handlers
-from db.ctrl import db
 from src.config import cfg
+from db.ctrl import db
 from models import User
-from logger import logger
 
 
 class KarbanBot(Bot):
@@ -41,7 +40,6 @@ class KarbanBot(Bot):
                 user_dict = await db.create(
                     user.id, user.username, user.first_name, is_admin=user.id in cfg.admins
                 )
-                logger.info(f"Create user. Username: {user.username}")
                 user = User(**user_dict)
                 return await handler(callback, user)
         return wrapper
