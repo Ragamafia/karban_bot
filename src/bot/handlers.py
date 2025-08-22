@@ -12,7 +12,7 @@ from config import cfg
 def register_main_handlers(bot):
     @bot.router.message(CommandStart())
     async def start_handler(callback: Message):
-        text = await Text().start_text(callback.from_user.username)
+        text = await Text().start_text(callback.from_user.first_name)
         contact_button = KeyboardButton(
             text="ПОДЕЛИТЬСЯ КОНТАКТОМ",
             request_contact=True
@@ -29,12 +29,12 @@ def register_main_handlers(bot):
     @bot.authorize
     async def contact_handler(message: Contact, user: User):
         contact = message.contact.phone_number
-        await message.answer(f"Спасибо, {user.username}!\n"
+        await message.answer(f"Спасибо, {user.first_name}!\n"
                              f"Напишите пожалуйста как мы можем обращаться к вам?\n"
                              f"Мы стараемся знать по именам всех наших клиентов! 😉")
 
         await db.update(user.user_id, {"contact": contact})
-        logger.success(f"Create user. Phone number {contact}. User {user.username}")
+        logger.success(f"Create user. Phone number {contact}. First_name {user.first_name}. User_name {user.username}")
 
 
     @bot.router.message()

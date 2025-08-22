@@ -9,7 +9,7 @@ auth_payload = {
     "data": {
         "type": "sessions",
         "attributes": {
-            "username": cfg.username,
+            "username": "admin924",
             "password": cfg.password,
         }
     }

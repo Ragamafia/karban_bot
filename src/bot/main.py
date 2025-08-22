@@ -7,8 +7,8 @@ from posiflora.client import PosifloraClient
 
 class Text:
 
-    async def start_text(self, username):
-        return (f"Приветствую, {username}!\n"
+    async def start_text(self, first_name):
+        return (f"Приветствую, {first_name}!\n"
                 f"Мы - команда KARBAN. 15 лет мы создаем самые необычные букеты в Иркутске!\n"
                 f"\n"
                 f"Можно добавить какое-то фото\n"
@@ -28,6 +28,7 @@ class Text:
                 f"Cоздан: {ts}\n"
                 f"\n"
                 f"Имя: {user.name}\n"
+                f"First_name: {user.first_name}\n"
                 f"Username: {user.username}\n"
                 f"Номер телефона: {user.contact}\n"
                 f"QR-код: '...'\n"
