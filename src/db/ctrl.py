@@ -35,7 +35,8 @@ class DataBaseController(BaseDB):
 
     @BaseDB.db_connect
     async def update(self, user_id, data):
-        return await self.user.filter(user_id=user_id).update(**data)
+        await self.user.filter(user_id=user_id).update(**data)
+        return await self.user.filter(user_id=user_id).first()
 
     @BaseDB.db_connect
     async def delete(self, user_id):

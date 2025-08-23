@@ -10,12 +10,18 @@ class Config(BaseSettings):
 
     ## Main
     bot_token: str = ''
-    username: str = ''
+    posiflora_username: str = ''
     password: str = ''
 
     sql_lite_db_path: Path = Path("../data/database.db")
 
-    admins: list = [1377785914]
+    admins: list = []
+
+    test_url: str = "https://t.me/raga_mafia"
+    admin_url: str = "https://t.me/karban_admin"
+    chanel_url: str = "https://t.me/karban_flo"
+
+    discount: int = 10
 
 cfg = Config()
 

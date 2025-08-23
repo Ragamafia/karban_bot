@@ -36,10 +36,11 @@ class KarbanBot(Bot):
             if user := await db.get_user(msg.from_user.id):
                 return await handler(callback, user)
             else:
-                user = callback.from_user
+                user = msg.from_user
                 user_dict = await db.create(
                     user.id, user.username, user.first_name, is_admin=user.id in cfg.admins
                 )
                 user = User(**user_dict)
                 return await handler(callback, user)
+
         return wrapper

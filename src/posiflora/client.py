@@ -9,7 +9,7 @@ auth_payload = {
     "data": {
         "type": "sessions",
         "attributes": {
-            "username": "admin924",
+            "username": cfg.posiflora_username,
             "password": cfg.password,
         }
     }
