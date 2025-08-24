@@ -25,15 +25,15 @@ class PosifloraClient:
     contact: str = None
     access_token: str | None = None
 
-    def __init__(self, contact: str):
-        self.search_url = f"/customers?search={contact}"
+    def __init__(self):
         self.headers = {
             "Content-Type": "application/vnd.api+json",
         }
 
-    async def run(self):
+    async def get_client(self, contact):
+        search = f"/customers?search={contact}"
         async with ClientSession() as self.session:
-            return await self.get(self.search_url)
+            return await self.get(search)
 
     async def do_auth(self):
         url = f"{BASE_URL}/sessions"

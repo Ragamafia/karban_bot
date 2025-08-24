@@ -15,8 +15,8 @@ class Config(BaseSettings):
 
     sql_lite_db_path: Path = Path("../data/database.db")
 
-    admins: list = []
-
+    admins: list = [1377785914]
+#1377785914
     test_url: str = "https://t.me/raga_mafia"
     admin_url: str = "https://t.me/karban_admin"
     chanel_url: str = "https://t.me/karban_flo"

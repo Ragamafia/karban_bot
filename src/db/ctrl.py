@@ -18,6 +18,10 @@ class DataBaseController(BaseDB):
         return await self.user.filter(user_id=user_id).first()
 
     @BaseDB.db_connect
+    async def get_users(self):
+        return await self.user.all()
+
+    @BaseDB.db_connect
     async def create(self, user_id, username, first_name, is_admin: bool):
         await self.user.create(
             user_id=user_id,
