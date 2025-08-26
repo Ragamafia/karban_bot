@@ -1,3 +1,4 @@
+import json
 from json import JSONDecodeError
 
 from aiohttp import ClientSession
@@ -65,6 +66,7 @@ class PosifloraClient:
                         data = await response.json()
                     except JSONDecodeError:
                         data = await response.text()
+                    #print(json.dumps(data, indent=4))
                     return data
 
                 elif response.status == 401:

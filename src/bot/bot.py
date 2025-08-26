@@ -37,8 +37,13 @@ class KarbanBot(Bot):
                 return await handler(callback, user)
             else:
                 user = msg.from_user
+                try:
+                    qr_code_id = msg.text.split(" ")[1]
+                except IndexError:
+                    qr_code_id = None
+
                 user_dict = await db.create(
-                    user.id, user.username, user.first_name, is_admin=user.id in cfg.admins
+                    user.id, user.username, user.first_name, qr_code_id, is_admin=user.id in cfg.admins
                 )
                 user = User(**user_dict)
                 return await handler(callback, user)

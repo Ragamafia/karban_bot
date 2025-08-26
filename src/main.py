@@ -9,9 +9,6 @@ async def run_bot():
     bot = KarbanBot()
     await bot.run()
 
-async def main():
-    await run_bot()
-
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(run_bot())

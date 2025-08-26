@@ -22,11 +22,12 @@ class DataBaseController(BaseDB):
         return await self.user.all()
 
     @BaseDB.db_connect
-    async def create(self, user_id, username, first_name, is_admin: bool):
+    async def create(self, user_id, username, first_name, qr_code_id, is_admin: bool):
         await self.user.create(
             user_id=user_id,
             username=username,
             first_name=first_name,
+            qr_code_id=qr_code_id,
             is_admin=is_admin
         )
         if user := await self.user.filter(user_id=user_id).first():

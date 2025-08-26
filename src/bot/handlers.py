@@ -13,19 +13,16 @@ from config import cfg
 def register_main_handlers(bot):
     @bot.router.message(CommandStart())
     @bot.authorize
-    async def start_handler(callback: CallbackQuery, user: User):
-        if user.user_id in cfg.admins:
-            keyboard = await CallbackData().home(user)
-        else:
-            button = KeyboardButton(
-                text="ПОДЕЛИТЬСЯ КОНТАКТОМ",
-                request_contact=True
-            )
-            keyboard = ReplyKeyboardMarkup(
-                resize_keyboard=True,
-                one_time_keyboard=True,
-                keyboard=[[button]]
-            )
+    async def start_handler(callback: Message | CallbackQuery, user: User):
+        button = KeyboardButton(
+            text="ПОДЕЛИТЬСЯ КОНТАКТОМ",
+            request_contact=True
+        )
+        keyboard = ReplyKeyboardMarkup(
+            resize_keyboard=True,
+            one_time_keyboard=True,
+            keyboard=[[button]]
+        )
         text = await Text(callback, user).start_text()
         await callback.answer(text, reply_markup=keyboard)
 
@@ -34,9 +31,15 @@ def register_main_handlers(bot):
     @bot.authorize
     async def contact_handler(message: Contact, user: User):
         contact = message.contact.phone_number
-        await message.answer(f"Спасибо, {user.first_name}!\n"
-                             f"Напишите пожалуйста как мы можем обращаться к вам?\n"
-                             f"Мы стараемся знать по именам всех наших клиентов! 😉")
+
+        for_admin = (f"Напишите пожалуйста ваше имя?\n"
+                     f"Оно необходимо для корректной работы бота)")
+        for_client = (f"Спасибо, {user.first_name}!\n"
+                      f"Напишите пожалуйста как мы можем обращаться к вам?\n"
+                      f"Мы стараемся знать по именам всех наших клиентов! 😉")
+
+        text = for_admin if user.user_id in cfg.admins else for_client
+        await message.answer(text)
         await db.update(user.user_id, {"contact": contact})
 
 
@@ -49,7 +52,7 @@ def register_main_handlers(bot):
 
         text = (f"Очень приятно, {name}!\n\n"
                 f"Пожалуйста выберите что вас интересует)")
-        keyboard = await CallbackData().home(user)
+        keyboard = await CallbackData().home_keyboard(user)
         await message.answer(text, reply_markup=keyboard)
 
         notification_text = await Text(message, user).notification()
