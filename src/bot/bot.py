@@ -4,8 +4,8 @@ from aiogram import Bot, Dispatcher, Router
 from aiogram.client.default import DefaultBotProperties
 from aiogram.types import Message, CallbackQuery, BotCommand
 
-from src.bot.handlers import register_main_handlers
-from src.config import cfg
+from bot.handlers import register_main_handlers
+from config import cfg
 from db.ctrl import db
 from models import User
 

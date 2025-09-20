@@ -2,8 +2,8 @@ from typing import Type
 
 from tortoise.models import Model
 
-from src.db.base import BaseDB
-from src.db.table import UserModel
+from db.base import BaseDB
+from db.table import UserModel
 
 
 class DataBaseController(BaseDB):
